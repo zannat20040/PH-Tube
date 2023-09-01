@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog</title>
+    <!--  -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.6.4/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- css code here -->
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+
+        @media screen and (max-width:500px) {
+            #video-section {
+                grid-template-columns: 1fr;
+            }
+
+            .thumbnail {
+                height: fit-content;
+            }
+        }
+    </style>
+
+</head>
+
+<body class="px-3">
+
+    <!-- menu section -->
+
+    <head>
+        <div class="flex gap-3  navbar bg-base-100 container mx-auto py-7 border-b-2 ">
+            <div class="navbar-start">
+                <img src="./img/Logo.png" alt="">
+            </div>
+            <div class="navbar-end">
+                <a href="./index.html"
+                    class="btn btn-sm sm:btn-md text-white bg-red-500 rounded-md px-7 font-semibold capitalize border-0 outline-0">Back</a>
+            </div>
+        </div>
+    </head>
+
+    <!-- blog section -->
+
+    <h1 class="bg-red-500 font-bold py-5 text-white text-center text-3xl mb-14">My Blog</h1>
+
+    <main id="blog-container">
+    </main>
+    <script src="./javascript file/blog.js"></script>
+
+</body>
+
+</html>
