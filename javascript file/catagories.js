@@ -46,7 +46,8 @@ const showCatagories = async (id) => {
 
       const time = findTimeToSecond(data?.others?.posted_date)
       const figId = `video-sec${index}`
-
+      const blueTick = `blueTick${index}`
+      
       // card create
       const newCard = `<div class="w-auto bg-base-100 ">
             <figure class="relative" id='${figId}'>
@@ -55,12 +56,14 @@ const showCatagories = async (id) => {
             <div class="card-body items-start flex flex-row px-0 pl-0 pr-4">
               <div class="avatar">
                 <div class="w-12 rounded-full">
-                  <img src=${data?.authors[0].profile_picture} />
+                  <img src=${data?.authors?.[0].profile_picture} />
                 </div>
               </div>
               <div class="px-4 flex flex-col gap-1">
                 <h2 class="text-lg card-title font-bold">${data?.title}</h2>
-                <p class="text-sm text-gray-500">${data?.authors[0].profile_name}</p>
+                <div id= '${blueTick}' class="flex gap-3 w-fit">
+                <p class="text-sm text-gray-500 inline-block">${data?.authors?.[0].profile_name}</p>
+                </div>
                 <p class="text-sm text-gray-500">${data?.others?.views}</p>
               </div>
             </div>
@@ -80,10 +83,24 @@ const showCatagories = async (id) => {
         getTimeDiv.appendChild(newTimeDivCreate)
       }
 
+      console.log(data)
+
+      // blueTick search
+      if(data?.authors?.[0].verified){
+
+        const getBlueTickDiv = document.getElementById(blueTick)
+
+        const newBlue = document.createElement('img')
+        newBlue.setAttribute('src', './img/fi_10629607.svg')
+
+        getBlueTickDiv.appendChild(newBlue)
+
+      }
+
     });
   }
 
-  // error logic
+  // error show
   else {
     const errortext = `<div class="card bg-base-10 mt-10">
         <figure><img src="./img/Icon.png" alt="Shoes" /></figure>
@@ -95,9 +112,6 @@ const showCatagories = async (id) => {
   }
 };
 
-// globally function call
-showCatagories("1000");
-catagoriesHandler();
 
 // time converting function
 const findTimeToSecond = (second) => {
@@ -110,3 +124,7 @@ const findTimeToSecond = (second) => {
     }
   }
 }
+
+// globally function call
+showCatagories("1000");
+catagoriesHandler();
