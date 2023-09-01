@@ -1,4 +1,28 @@
 *{
     font-family: 'Inter', sans-serif;
 }
-
+ @media screen and (max-width:440px) {
+    #video-section{
+        grid-template-columns: 1fr;
+    }
+  .thumbnail{
+    height: fit-content;
+   }
+   /*
+   .vid-body{
+    padding-left:0 ;
+    padding-right:0 ;
+    flex-direction: column;
+   }
+   .avatar {
+    width: 100%;
+    justify-content: center;
+   }
+   .vid-text{
+    padding: 0!important;
+    width: 70%;
+   }
+   .vid-text h2{
+    justify-content: center;
+   } */
+} 
