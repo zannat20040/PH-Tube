@@ -24,11 +24,12 @@ const catagoriesBtnClickHandler = (id) => {
   showCatagories(id);
 };
 
+const videoSection = document.getElementById("video-section");
 // catagories find and show
 const showCatagories = async (id) => {
-  const videoSection = document.getElementById("video-section");
   const noDataBtn = document.getElementById("no-data");
 
+  // console.log(view)
   // catagories data fetching
   const showCatagoriesResponse = await fetch(
     `https://openapi.programming-hero.com/api/videos/category/${id}`
@@ -47,7 +48,7 @@ const showCatagories = async (id) => {
       const time = findTimeToSecond(data?.others?.posted_date)
       const figId = `video-sec${index}`
       const blueTick = `blueTick${index}`
-      
+
       // card create
       const newCard = `<div class="w-auto bg-base-100 ">
             <figure class="relative" id='${figId}'>
@@ -64,7 +65,7 @@ const showCatagories = async (id) => {
                 <div id= '${blueTick}' class="flex gap-3 w-fit">
                 <p class="text-sm text-gray-500 inline-block">${data?.authors?.[0].profile_name}</p>
                 </div>
-                <p class="text-sm text-gray-500">${data?.others?.views}</p>
+                <p class="text-sm text-gray-500 views">${data?.others?.views}</p>
               </div>
             </div>
           </div>`;
@@ -76,17 +77,18 @@ const showCatagories = async (id) => {
       // time showing logic
       if (time) {
         const newTimeDivCreate = document.createElement('div')
-        newTimeDivCreate.classList.add('bg-black' ,'px-5','py-1', 'font-extralight' ,'text-white','rounded','absolute', 'bottom-3' ,'right-3','post-time-container')
-        const timeText  = `<p id="post-time">${time}</p>`
+        newTimeDivCreate.classList.add('bg-black', 'px-5', 'py-1', 'font-extralight', 'text-white', 'rounded', 'absolute', 'bottom-3', 'right-3', 'post-time-container')
+        const timeText = `<p id="post-time">${time}</p>`
         newTimeDivCreate.innerHTML = timeText
-    
+
         getTimeDiv.appendChild(newTimeDivCreate)
       }
 
-      console.log(data)
+      // console.log(data)
+      // sorting(data)
 
       // blueTick search
-      if(data?.authors?.[0].verified){
+      if (data?.authors?.[0].verified) {
 
         const getBlueTickDiv = document.getElementById(blueTick)
 
@@ -123,6 +125,48 @@ const findTimeToSecond = (second) => {
       return `${getHour}hrs ${getDifference} min ago`
     }
   }
+}
+
+// sort button event
+document.getElementById('sort-btn').addEventListener('click', function () {
+
+  const views = document.getElementsByClassName('views')
+
+  const newViewsArray = []
+
+  // get the views value
+  for (const view of views) {
+    const getView = view.innerText
+    const viewIs = getView.replace('K', '')
+
+    newViewsArray.push(viewIs)
+  }
+
+  // sort the views
+  const sortedViews = newViewsArray.sort(function (a, b) { return b - a })
+
+  sortingItems(sortedViews, views)
+
+})
+
+// sorted views compare and display
+const sortingItems = (sortedViews, view) => {
+
+  sortedViews.map(viewNum => {
+    for (const element of view) {
+      const getView = element.innerText
+
+      const convertViews = `${viewNum}K`
+
+      // views compare
+      if (convertViews === getView) {
+        const parentElement = element.parentElement.parentElement.parentElement
+
+        // views display
+        videoSection.appendChild(parentElement)
+      }
+    }
+  })
 }
 
 // globally function call
