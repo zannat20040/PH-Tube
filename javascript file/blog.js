@@ -1,3 +1,4 @@
+// dynamic blog post create
 const blog =[
     {
         title:'Discuss the scope of var, let, and const',
@@ -29,8 +30,10 @@ const blog =[
 
 ]
 
+
+// blog add
 blog.map(element=>{
-    console.log()
+
     const getBlogContainer = document.getElementById('blog-container')
     const createAccordian = `<div class="collapse collapse-plus bg-base-200 mb-3">
     <input type="radio" name="my-accordion-3" checked="checked" /> 
@@ -41,7 +44,6 @@ blog.map(element=>{
     </div>`
 
     getBlogContainer.innerHTML += createAccordian
-
 
 })
 
