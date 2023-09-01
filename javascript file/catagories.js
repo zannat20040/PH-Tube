@@ -29,7 +29,6 @@ const videoSection = document.getElementById("video-section");
 const showCatagories = async (id) => {
   const noDataBtn = document.getElementById("no-data");
 
-  // console.log(view)
   // catagories data fetching
   const showCatagoriesResponse = await fetch(
     `https://openapi.programming-hero.com/api/videos/category/${id}`
@@ -83,9 +82,6 @@ const showCatagories = async (id) => {
 
         getTimeDiv.appendChild(newTimeDivCreate)
       }
-
-      // console.log(data)
-      // sorting(data)
 
       // blueTick search
       if (data?.authors?.[0].verified) {
